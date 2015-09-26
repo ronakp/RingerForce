@@ -58,12 +58,12 @@ body {
   white-space: nowrap;
 }
 
-.bg-01 { background: #539770; }
-.bg-02 { background: #4B7D74; }
-.bg-03 { background: #8DC2BC; }
-.bg-04 { background: #EDD6B4; }
-.bg-05 { background: #BE7467; }
-.bg-06 { background: #E2AE63; }
+.bg-01 { background: #1C3649; }
+.bg-02 { background: #304657; }
+.bg-03 { background: #455D6F; }
+.bg-04 { background: #617685; }
+.bg-05 { background: #8796A1; }
+.bg-06 { background: #E2AE63; } /*not in blue scheme*/
 
 
 /* CSS FOR PULSING BUTTONS */
