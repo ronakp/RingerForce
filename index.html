@@ -1,3 +1,36 @@
-<html>
-	
+<!DOCTYPE html>
+<html >
+	<head>
+		<meta charset="UTF-8">
+		<title>RingerForce</title>
+		<link rel="stylesheet" href="css/reset.css">
+		<link rel="stylesheet" href="css/style.css">
+		<script src="https://cdn.firebase.com/js/client/2.3.0/firebase.js"></script>
+	</head>
+
+	<body>
+		<div class="wrap">
+			<div class="avatar">
+				<img src="http://cdn.ialireza.me/avatar.png">
+			</div>
+			<input type="text" placeholder="Email" required>
+			<div class="bar">
+				<i></i>
+			</div>
+			<input type="password" placeholder="Password" required>
+			<a href="" class="forgot_link">Forgot?</a>
+			<button id="signin" onclick="signin()">Login</button>
+			<a href="register.html"><button>Register</button></a>
+		</div>
+		<script type="text/javascript">
+			function signin(){
+								var myref = new Firebase("https://ringerforce.firebaseio.com/");
+								var user = myref.child("user").set({
+									              firstname: "hi",
+									              lastname: "hey"
+							           			});
+							}
+		</script>
+		<script src="index.js"></script>
+	</body>
 </html>
