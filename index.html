@@ -13,22 +13,31 @@
 			<div class="avatar">
 				<img src="http://cdn.ialireza.me/avatar.png">
 			</div>
-			<input type="text" placeholder="Email" required>
+			<input type="text" id="email" placeholder="Email" required>
 			<div class="bar">
 				<i></i>
 			</div>
-			<input type="password" placeholder="Password" required>
+			<input type="password" id="password" placeholder="Password" required>
 			<a href="" class="forgot_link">Forgot?</a>
 			<button id="signin" onclick="signin()">Login</button>
 			<a href="register.html"><button>Register</button></a>
 		</div>
 		<script type="text/javascript">
 			function signin(){
-								var myref = new Firebase("https://ringerforce.firebaseio.com/");
-								var user = myref.child("user").set({
-									              firstname: "hi",
-									              lastname: "hey"
-							           			});
+								var ref = new Firebase("https://ringerforce.firebaseio.com/");
+								var email1 = document.getElementById('email').value;
+								var password1 = document.getElementById('password').value;
+								ref.authWithPassword({
+								email    : email1,
+								password : password1
+								}, function(error, authData) {
+								if (error) {
+								alert("Login Failed!", error);
+								} else {
+								alert("Authenticated successfully with payload:", authData);
+								}
+								});
+								
 							}
 		</script>
 	</body>
