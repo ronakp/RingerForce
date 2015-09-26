@@ -7,6 +7,7 @@ a:active {
   text-decoration: none;
 }
 
+<<<<<<< HEAD
 body {
   height: 100%;
   width: 100%;
@@ -14,12 +15,25 @@ body {
   padding: 0;
   
   background: #fff;
+=======
+html, body, #map {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+>>>>>>> 1ba4833f62065c9d7fce35c52969fce9d6818e1e
 }
 
 .card-holder {  
   position: absolute;
+<<<<<<< HEAD
   width: 0px;
   overflow: visible;
+=======
+  left: 0px;
+  width: 0px;
+  overflow: visible;
+  z-index: 8;
+>>>>>>> 1ba4833f62065c9d7fce35c52969fce9d6818e1e
 }
 
 .card-wrapper {
@@ -58,12 +72,21 @@ body {
   white-space: nowrap;
 }
 
+<<<<<<< HEAD
 .bg-01 { background: #539770; }
 .bg-02 { background: #4B7D74; }
 .bg-03 { background: #8DC2BC; }
 .bg-04 { background: #EDD6B4; }
 .bg-05 { background: #BE7467; }
 .bg-06 { background: #E2AE63; }
+=======
+.bg-01 { background: #1C3649; }
+.bg-02 { background: #304657; }
+.bg-03 { background: #455D6F; }
+.bg-04 { background: #617685; }
+.bg-05 { background: #8796A1; }
+.bg-06 { background: #E2AE63; } /*not in blue scheme*/
+>>>>>>> 1ba4833f62065c9d7fce35c52969fce9d6818e1e
 
 
 /* CSS FOR PULSING BUTTONS */
