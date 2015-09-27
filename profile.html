@@ -106,11 +106,11 @@
 				<table style="width:100%">
 				<tr>
 					<td>Title:</td>
-					<td>Title</td>
+					<td id="t"></td>
 				</tr>
 				<tr>
 					<td>Description:</td>
-					<td>Description</td>
+					<td id="d"></td>
 				</tr>
 				<tr>
 					<td>Location:</td>
@@ -118,30 +118,30 @@
 						<table style="width:100%" id:"locationtable">
 							<tr>
 								<td>Address:</td>
-								<td>Address</td>
+								<td id="a"></td>
 							</tr>
 							<tr>
 								<td>City:</td>
-								<td>City</td>
+								<td id="ci"></td>
 							</tr>
 							<tr>
 								<td>Postal:</td>
-								<td>Postal</td>
+								<td id="p"></td>
 							</tr>
 							<tr>
 								<td>Country:</td>
-								<td>Postal</td>
+								<td id="c"></td>
 							</tr>
 						</table>
 					</td>
 				</tr>
 				<tr>
 					<td>Pay:</td>
-					<td>Pay</td>
+					<td id="pa"></td>
 				</tr>
 				<tr>
 					<td>Requirements:</td>
-					<td>Requirements</td>
+					<td id="r"></td>
 				</tr>
 				<tr>
 					<td>Duration:</td>
@@ -149,11 +149,11 @@
 						<table style:="width:100%" id:"durationtable">
 							<tr>
 								<td>Start:</td>
-								<td>Start</td>
+								<td id="s"></td>
 							</tr>
 							<tr>
 								<td>End:</td>
-								<td>End</td>
+								<td id="e"></td>
 							</tr>
 						</table>
 					</td>
@@ -165,6 +165,64 @@
 				
 										var map;
 										var initialLocation;
+										var adata;
+										function filldata(){
+												var reflocal = new Firebase("https://ringerforce.firebaseio.com/");
+												var refuser1 = reflocal.child(getCookie()).child("jobposting").child("title");
+												var refuser2 = reflocal.child(getCookie()).child("jobposting").child("description");
+												var refuser3 = reflocal.child(getCookie()).child("jobposting").child("address");
+												var refuser4 = reflocal.child(getCookie()).child("jobposting").child("city");
+												var refuser5 = reflocal.child(getCookie()).child("jobposting").child("postal");
+												var refuser6 = reflocal.child(getCookie()).child("jobposting").child("country");
+												var refuser7 = reflocal.child(getCookie()).child("jobposting").child("pay");
+												var refuser8 = reflocal.child(getCookie()).child("jobposting").child("reqs");
+												var refuser9 = reflocal.child(getCookie()).child("jobposting").child("start");
+												var refuser10 = reflocal.child(getCookie()).child("jobposting").child("end");
+
+									
+									refuser1.on("value", function(snapshot) {
+ 											var dataaa = snapshot.val();
+ 											document.getElementById("t").innerHTML = dataaa;
+										});
+									refuser2.on("value", function(snapshot) {
+ 											var dataaa = snapshot.val();
+ 											document.getElementById("d").innerHTML = dataaa;
+										});
+									refuser3.on("value", function(snapshot) {
+ 											var dataaa = snapshot.val();
+ 											document.getElementById("a").innerHTML = dataaa;
+										});
+									refuser4.on("value", function(snapshot) {
+ 											var dataaa = snapshot.val();
+ 											document.getElementById("ci").innerHTML = dataaa;
+										});
+									refuser5.on("value", function(snapshot) {
+ 											var dataaa = snapshot.val();
+ 											document.getElementById("p").innerHTML = dataaa;
+										});
+									refuser6.on("value", function(snapshot) {
+ 											var dataaa = snapshot.val();
+ 											document.getElementById("c").innerHTML = dataaa;
+										});
+									refuser7.on("value", function(snapshot) {
+ 											var dataaa = snapshot.val();
+ 											document.getElementById("pa").innerHTML = dataaa;
+										});
+									refuser8.on("value", function(snapshot) {
+ 											var dataaa = snapshot.val();
+ 											document.getElementById("r").innerHTML = dataaa;
+										});
+									refuser9.on("value", function(snapshot) {
+ 											var dataaa = snapshot.val();
+ 											document.getElementById("s").innerHTML = dataaa;
+										});
+									refuser10.on("value", function(snapshot) {
+ 											var dataaa = snapshot.val();
+ 											document.getElementById("e").innerHTML = dataaa;
+										});
+
+
+										}
 				function initmap() {
 										var siberia = new google.maps.LatLng(60, 105);
 										var newyork = new google.maps.LatLng(40.69847032728747, -73.9514422416687);
@@ -198,12 +256,16 @@
 											}
 								}
 								function geocodeAddress(geocoder, resultsMap) {
-													var address = joblistdata();
-													geocoder.geocode({'address': address}, function(results, status) {
+													joblistdata();
+													
+													setTimeout(function(){
+														var address = adata;
+														geocoder.geocode({'address': address}, function(results, status) {
 													if (status === google.maps.GeocoderStatus.OK) {
 														var marker = new google.maps.Marker({
 														map: resultsMap,
 														position: results[0].geometry.location
+														
 														});
 													} 
 													else {
@@ -223,17 +285,25 @@
 																}
 															});
 													});
+
+													},3500);
+													
 												
 												}
 								function joblistdata() {
 									var reflocal = new Firebase("https://ringerforce.firebaseio.com/");
-									var refuser = reflocal.child(getCookie()).child("jobposting");
-									var data
-										refuser.on("value", function(snapshot) {
-											data = snapshot.val();
+									var refuser = reflocal.child(getCookie()).child("jobposting").child("postal");
+									
+									refuser.on("value", function(snapshot) {
+ 											var data = snapshot.val();
+ 											adata = data;
+ 											return data;
+										});
+										/*refuser.on("value", function(snapshot) {
+											var data = snapshot.key();
 											alert(data);
 											return data;
-								}
+								});*/
 							}
 								function submit(){
 									var titlee = document.getElementById('title').value;
@@ -247,11 +317,11 @@
 									var startt = document.getElementById('start').value;
 									var endd = document.getElementById('end').value;
 										var ref = new Firebase("https://ringerforce.firebaseio.com/");
-										var post = Math.floor((Math.random() * 1000) + 1);
-										alert(post);
-										alert(getCookie());
-										ref.child(getCookie()).child("jobposting").child(post).set({
-																posting: {
+										//var post = Math.floor((Math.random() * 1000) + 1);
+										//alert(post);
+										//alert(getCookie());
+										ref.child(getCookie()).child("jobposting")./*child(post)*/set({
+																/*posting:*/ 
 																title: titlee,
 																description: descriptionn,
 																address: addresss,
@@ -261,7 +331,7 @@
 																pay: payy,
 																reqs: reqss,
 																start: startt,
-																end: endd }
+																end: endd 
 																
 																});
 								}
