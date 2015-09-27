@@ -29,8 +29,8 @@ html, body, #map {
 
 .card {
   position: relative;
-  left: 72px;
-  padding: 16px 32px 16px 64px;
+  left: 49px;
+  padding: 16px 45px 16px 64px;
   margin: 8px;  
   x-box-shadow: 0 0 8px 0px rgba(0, 0, 0, 0.5);
   box-shadow: 8px 0 8px -8px rgba(0, 0, 0, 0.5);
@@ -58,7 +58,7 @@ html, body, #map {
 }
 
 .bg-01 { background: #1C3649; }
-.bg-02 { background: #304657; }
+.bg-02 { background: #304657; padding: 16px 11px 16px 64px !important; height: 31px;}
 .bg-03 { background: #455D6F; }
 .bg-04 { background: #617685; }
 .bg-05 { background: #8796A1; }
@@ -131,4 +131,28 @@ tr {
   font-size: 17px;
   font-weight: bold;
   color: white;
+}
+
+span.card-content > img {
+  width: 23px;
+}
+
+span.card-content > input {
+  width: 200px;
+}
+.submitbutton {
+  width: 100%;
+  border-radius: 7px;
+  background: #8796A1;
+  text-decoration: center;
+  border: none;
+  color: #FFF;
+  margin-top: 6px;
+  padding-top: 14px;
+  padding-bottom: 14px;
+  outline: none;
+  font-size: 13px;  
+  border-bottom: 3px solid #1C3649;
+  border-right: 2px solid #1C3649; 
+  cursor: pointer;
 }
