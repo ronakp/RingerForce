@@ -6,31 +6,26 @@
 }
 
 body {
-	background-image: url("back.png"); ;
+	background-image: url("back.png");
+	background-repeat: no-repeat;
 	font-family: "Lato" ;
 }
 .wrap {
-	width:250px;
+	width:294px;
 	height: auto;
 	margin: auto;
-	margin-top: 10%;
+	margin-top: 11%;
 }
 .avatar {
 	width: 100%;
 	margin: auto;
-	width: 65px;
 	border-radius: 100px;
-	height: 65px;
-	background: #448ed3 ;
 	position: relative;
-	bottom: -15px;
+	bottom: 94px;
 }
 .avatar img {
-	width: 55px;
-	height: 55px;
 	border-radius: 100px;
 	margin: auto;
-	border:3px solid #fff;
 	display: block;
 }
 .wrap input {
@@ -95,6 +90,9 @@ body {
 	cursor: pointer;
 }
 
-div.avatar > img {
-	box-shadow: 0px 6px 8px #888888;
-}
+/*at 1117 wide .avatar bottom = 46px
+/* at 618 wide .avatar bottom = 29px
+/*at 406 wide image.brand width = 168px
+/* 320 wide image.brand width = 146px
+/*  .avatar bottom = 0px
+div.wrap margin-top 3%
