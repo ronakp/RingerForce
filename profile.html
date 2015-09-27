@@ -92,7 +92,8 @@
 			<div class='card-wrapper'>
 			    <a href='#'>
 			      <div class='card bg-01'>
-			       <span class="card-content"><input type="text">&nbsp;&nbsp;&nbsp;&nbsp;<img src="searchglass.png" /></span>
+			       <span class="card-content"><input id="search" type="text" value="Search" onFocus="if (this.value=='Search'){this.value='';}"
+onBlur="if (this.value==''){this.value='Search';}" />&nbsp;&nbsp;&nbsp;&nbsp;<img src="searchglass.png" /></span>
 			      </div>
 			    </a>
 			</div>
@@ -101,7 +102,7 @@
 			<div class='card-wrapper'>
 			    <a href='#'>
 			      <div class='card bg-02'>
-			        <span class='card-content'>long menu item #2</span>
+			        <span class='card-content'><span>Preferred</span>&nbsp;&nbsp;&nbsp;&nbsp;<img src="filter.png" /></span>
 			      </div>
 			    </a>
 			</div>
@@ -161,6 +162,6 @@
     	<script async defer
      		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCi89UE4O4PxfFq7Ni8p5IQ_iZt3HXsm5I&callback=initmap">
     	</script>
-    	
+    	<script type="text/javascript" src="profile.js"></script>
 	</body>
 </html>
