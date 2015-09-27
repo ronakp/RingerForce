@@ -29,8 +29,8 @@ html, body, #map {
 
 .card {
   position: relative;
-  left: 72px;
-  padding: 16px 32px 16px 64px;
+  left: 49px;
+  padding: 16px 45px 16px 64px;
   margin: 8px;  
   x-box-shadow: 0 0 8px 0px rgba(0, 0, 0, 0.5);
   box-shadow: 8px 0 8px -8px rgba(0, 0, 0, 0.5);
@@ -122,6 +122,14 @@ input, textarea {
   float: left;
 }
 
-label {
+/*label {
   
+}*/
+
+span.card-content > img {
+  width: 23px;
+}
+
+span.card-content > input {
+  width: 200px;
 }
