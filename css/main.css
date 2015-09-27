@@ -102,5 +102,26 @@ left: 900px;
 @keyframes pulse {to {box-shadow: 0 0 0 45px rgba(232, 76, 61, 0);}}
 
 .addjob {
-  left: 200px; top: 100px; width: 500px; height: 500px; position: absolute; z-index: 99; background-color: red;"
+  left: 200px; top: 100px; width: 500px; height: 500px; position: absolute; z-index: 99; background-color: red;
+  overflow: scroll;
+}
+
+input, textarea {
+  background: rgba(255,255,255,0.1);
+  border: none;
+  font-size: 15px;
+  height: auto;
+  margin: 0;
+  outline: 0;
+  padding: 2px;
+  width: 100%;
+  background-color: #e8eeef;
+  color: #8a97a0;
+  box-shadow: 0 1px 0 rgba(0,0,0,0.03) inset;
+  margin-bottom: 5px;
+  float: left;
+}
+
+label {
+  
 }
