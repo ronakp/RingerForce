@@ -6,10 +6,25 @@
 }
 
 body {
-	background-image: url("back.png");
-	background-repeat: no-repeat;
+	/*background-image: url("back.png");*/
+	/*background-repeat: no-repeat;*/
 	font-family: "Lato" ;
 }
+
+img.bground, #bground2 {
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    margin: 0;
+    padding: 0;
+}
+
+img#bground2 {
+	opacity: 0.3;
+}
+
 .wrap {
 	width:294px;
 	height: auto;
@@ -142,6 +157,11 @@ img.brand {
 	}
 }
 
+@media (max-width: 578px) {
+	img#bground {
+		margin-top: ;
+	}
+}
 /*at 1117 wide .avatar bottom = 46px
  at 618 wide .avatar bottom = 29px*at 406 wide image.brand width = 168px
  320 wide image.brand width = 146px

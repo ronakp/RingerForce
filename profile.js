@@ -43,5 +43,6 @@ accountPanel.onclick = function () {
 	
 	}
 
-
-
+//RESPONSIVE BACKGROUND
+var bground = document.getElementById("bground").style.height;
+console.log(bground);
