@@ -1,0 +1,163 @@
+
+a:link,
+a:hover,
+a:visited,
+a:active {
+  color: #fff;
+  text-decoration: none;
+}
+
+html, body, #map {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.card-holder {  
+  position: absolute;
+  left: 0px;
+  width: 0px;
+  overflow: visible;
+  z-index: 8;
+}
+
+.card-wrapper {
+  display: inline-block;
+  float: right;
+  clear: both;
+}
+
+.card {
+  position: relative;
+  left: 49px;
+  padding: 16px 45px 16px 64px;
+  margin: 8px;  
+  x-box-shadow: 0 0 8px 0px rgba(0, 0, 0, 0.5);
+  box-shadow: 8px 0 8px -8px rgba(0, 0, 0, 0.5);
+  background: #fff;
+  transition: all 0.3s ease-in-out 0.1s;
+}
+
+.card:hover {
+  position: relative;
+  left: 100%;
+  margin-left: -32px;
+  box-shadow: 
+    0 -8px 8px -8px rgba(0, 0, 0, 0.5),
+    0 8px 8px -8px rgba(0, 0, 0, 0.5);
+  transition: all 0.3s ease-in-out;
+}
+
+.card-content {
+  display: inline-block;
+  color: #fff;
+  font-family: "Lato";
+  font-size: 16px;
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+.bg-01 { background: #1C3649; }
+.bg-02 { background: #304657; padding: 16px 11px 16px 64px !important;}
+.bg-03 { background: #455D6F; padding: 16px 11px 16px 64px !important;}
+.bg-04 { background: #617685; }
+.bg-05 { background: #8796A1; }
+.bg-06 { background: #E2AE63; } /*not in blue scheme*/
+
+
+/* CSS FOR PULSING BUTTONS */
+.container {
+  width: 200px;
+  height: 100%;
+  margin: 0 auto 0;
+}
+
+.pulse-button {  
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  border: none;
+  box-shadow: 0 0 0 0 rgba(232, 76, 61, 0.7);
+  border-radius: 50%;
+  background-color: #1c3649;
+  z-index: 0;
+  cursor: pointer;
+  color: #FAEFD0;
+  /*-webkit-animation: pulse 1.25s infinite cubic-bezier(0.66, 0, 0, 1);
+  -moz-animation: pulse 1.25s infinite cubic-bezier(0.66, 0, 0, 1);
+  -ms-animation: pulse 1.25s infinite cubic-bezier(0.66, 0, 0, 1);
+  animation: pulse 1.25s infinite cubic-bezier(0.66, 0, 0, 1);*/
+}
+/*.pulse-button:hover 
+{
+  -webkit-animation: none;-moz-animation: none;-ms-animation: none;animation: none;
+}*/
+
+@-webkit-keyframes pulse {to {box-shadow: 0 0 0 45px rgba(232, 76, 61, 0);}}
+@-moz-keyframes pulse {to {box-shadow: 0 0 0 45px rgba(232, 76, 61, 0);}}
+@-ms-keyframes pulse {to {box-shadow: 0 0 0 45px rgba(232, 76, 61, 0);}}
+@keyframes pulse {to {box-shadow: 0 0 0 45px rgba(232, 76, 61, 0);}}
+
+.addjob, .jobposting {
+  left: 200px;
+  top: 100px;
+  width: 35em;
+  height: auto;
+  position: absolute;
+  z-index: 99;
+  background: rgba(48, 70, 87, 0.9);
+  padding: 1.5em;
+  border-radius: 8px;
+}
+
+input, textarea {
+  background: rgba(255,255,255,0.1);
+  border: none;
+  font-size: 15px;
+  height: auto;
+  margin: 0;
+  outline: 0;
+  padding: 2px;
+  width: 100%;
+  background-color: #e8eeef;
+  color: #8a97a0;
+  box-shadow: 0 1px 0 rgba(0,0,0,0.03) inset;
+  margin-bottom: 5px;
+  float: left;
+}
+
+tr {
+  font-family: "Lato";
+  font-size: 17px;
+  font-weight: bold;
+  color: white;
+}
+
+span.card-content > img {
+  width: 23px;
+}
+
+span.card-content > input {
+  width: 200px;
+}
+.submitbutton {
+  width: 100%;
+  border-radius: 7px;
+  background: #8796A1;
+  text-decoration: center;
+  border: none;
+  color: #FFF;
+  margin-top: 6px;
+  padding-top: 14px;
+  padding-bottom: 14px;
+  outline: none;
+  font-size: 13px;  
+  border-bottom: 3px solid #1C3649;
+  border-right: 2px solid #1C3649; 
+  cursor: pointer;
+}
+
+.brand {
+  width: 200px;
+  height: 200px;
+}

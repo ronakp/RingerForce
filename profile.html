@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<link rel="stylesheet" href="css/main.css">
+		<style type="text/css">
+			html, body { height: 100%; margin: 0; padding: 0 }
+			#map { height: 100%; }
+		</style>
+		<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+		<script src="https://cdn.firebase.com/js/client/2.3.0/firebase.js"></script>
+	</head>
+	<body>
+		<div class="addjob" id="addjob">
+			<table style="width:100%">
+				<tr>
+					<td>Title:</td>
+					<td><input type="text" id="title" name="jobtitle"></td>
+				</tr>
+				<tr>
+					<td>Description:</td>
+					<td><textarea type="text" id="description" name="jobdescription"></textarea></td>
+				</tr>
+				<tr>
+					<td>Location:</td>
+					<td>
+						<table style="width:100%" id:"locationtable">
+							<tr>
+								<td>Address:</td>
+								<td><input type="text" id="address" name="jobaddress"></td>
+							</tr>
+							<tr>
+								<td>City:</td>
+								<td><input type="text" id="city" name="jobcity"></td>
+							</tr>
+							<tr>
+								<td>Postal:</td>
+								<td><input type="text" id="postal" name="jobpostal"></td>
+							</tr>
+							<tr>
+								<td>Country:</td>
+								<td><input type="text" id="country" name="jobcountry"></td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<td>Pay:</td>
+					<td><input type="text" id="pay" name="jobpay"></td>
+				</tr>
+				<tr>
+					<td>Requirements:</td>
+					<td><input type="text" id="reqs" name="jobreqs"></td>
+				</tr>
+				<tr>
+					<td>Duration:</td>
+					<td>
+						<table style:="width:100%" id:"durationtable">
+							<tr>
+								<td>Start:</td>
+								<td><input type="text" id="start" name="jobstart"></td>
+							</tr>
+							<tr>
+								<td>End:</td>
+								<td><input type="text" id="end" name="jobend"></td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+				</table>
+				<button id="submit" onclick="submit()">SUBMIT</button>
+			</div>
+			<div class='card-holder'>
+				
+				<div class='card-wrapper'>
+					<a href='#'>
+						<div class='card bg-01'>
+							<span class="card-content"><input id="search" type="text" value="Search" onFocus="if (this.value=='Search'){this.value='';}"
+							onBlur="if (this.value==''){this.value='Search';}" />&nbsp;&nbsp;&nbsp;&nbsp;<img src="searchglass.png" /></span>
+						</div>
+					</a>
+				</div>
+				<div class='card-wrapper'>
+					<a href='#' id="filterPanel">
+						<div id="filterPop" class='card bg-02'>
+							<span class='card-content' style="font-size: 26px;"><span>Preferred</span>&nbsp;&nbsp;&nbsp;&nbsp;<img id="filterIcon" src="filter.png"></img></span>
+						</div>
+					</a>
+				</div>
+				<div class='card-wrapper'>
+					<a href='#' id="accountPanel">
+						<div id="accountPop" class='card bg-03'>
+							<span class='card-content' style="font-size: 26px;">
+								<span>Account</span>&nbsp;&nbsp;&nbsp;&nbsp;<img id="gearIcon" src="gearicon.png"></img></span>
+							</span>
+						</div>
+					</a>
+				</div>
+				<button class="pulse-button" id="pulse-button"><span style="font-size: 50px;">+</span></button>
+			</div>
+			<div id='map' class='map' style="width:100%; height:100%">
+			</div>
+			<div id="jobposting" class="jobposting">
+				<span></span>
+				<table style="width:100%">
+				<tr>
+					<td>Title:</td>
+					<td id="t"></td>
+				</tr>
+				<tr>
+					<td>Description:</td>
+					<td id="d"></td>
+				</tr>
+				<tr>
+					<td>Location:</td>
+					<td>
+						<table style="width:100%" id:"locationtable">
+							<tr>
+								<td>Address:</td>
+								<td id="a"></td>
+							</tr>
+							<tr>
+								<td>City:</td>
+								<td id="ci"></td>
+							</tr>
+							<tr>
+								<td>Postal:</td>
+								<td id="p"></td>
+							</tr>
+							<tr>
+								<td>Country:</td>
+								<td id="c"></td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<td>Pay:</td>
+					<td id="pa"></td>
+				</tr>
+				<tr>
+					<td>Requirements:</td>
+					<td id="r"></td>
+				</tr>
+				<tr>
+					<td>Duration:</td>
+					<td>
+						<table style:="width:100%" id:"durationtable">
+							<tr>
+								<td>Start:</td>
+								<td id="s"></td>
+							</tr>
+							<tr>
+								<td>End:</td>
+								<td id="e"></td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+				</table>
+			</div>
+			<script type="text/javascript">
+				
+										var map;
+										var initialLocation;
+										var adata;
+										function filldata(){
+												var reflocal = new Firebase("https://ringerforce.firebaseio.com/");
+												var refuser1 = reflocal.child(getCookie()).child("jobposting").child("title");
+												var refuser2 = reflocal.child(getCookie()).child("jobposting").child("description");
+												var refuser3 = reflocal.child(getCookie()).child("jobposting").child("address");
+												var refuser4 = reflocal.child(getCookie()).child("jobposting").child("city");
+												var refuser5 = reflocal.child(getCookie()).child("jobposting").child("postal");
+												var refuser6 = reflocal.child(getCookie()).child("jobposting").child("country");
+												var refuser7 = reflocal.child(getCookie()).child("jobposting").child("pay");
+												var refuser8 = reflocal.child(getCookie()).child("jobposting").child("reqs");
+												var refuser9 = reflocal.child(getCookie()).child("jobposting").child("start");
+												var refuser10 = reflocal.child(getCookie()).child("jobposting").child("end");
+
+									
+									refuser1.on("value", function(snapshot) {
+ 											var dataaa = snapshot.val();
+ 											document.getElementById("t").innerHTML = dataaa;
+										});
+									refuser2.on("value", function(snapshot) {
+ 											var dataaa = snapshot.val();
+ 											document.getElementById("d").innerHTML = dataaa;
+										});
+									refuser3.on("value", function(snapshot) {
+ 											var dataaa = snapshot.val();
+ 											document.getElementById("a").innerHTML = dataaa;
+										});
+									refuser4.on("value", function(snapshot) {
+ 											var dataaa = snapshot.val();
+ 											document.getElementById("ci").innerHTML = dataaa;
+										});
+									refuser5.on("value", function(snapshot) {
+ 											var dataaa = snapshot.val();
+ 											document.getElementById("p").innerHTML = dataaa;
+										});
+									refuser6.on("value", function(snapshot) {
+ 											var dataaa = snapshot.val();
+ 											document.getElementById("c").innerHTML = dataaa;
+										});
+									refuser7.on("value", function(snapshot) {
+ 											var dataaa = snapshot.val();
+ 											document.getElementById("pa").innerHTML = dataaa;
+										});
+									refuser8.on("value", function(snapshot) {
+ 											var dataaa = snapshot.val();
+ 											document.getElementById("r").innerHTML = dataaa;
+										});
+									refuser9.on("value", function(snapshot) {
+ 											var dataaa = snapshot.val();
+ 											document.getElementById("s").innerHTML = dataaa;
+										});
+									refuser10.on("value", function(snapshot) {
+ 											var dataaa = snapshot.val();
+ 											document.getElementById("e").innerHTML = dataaa;
+										});
+
+
+										}
+				function initmap() {
+										var siberia = new google.maps.LatLng(60, 105);
+										var newyork = new google.maps.LatLng(40.69847032728747, -73.9514422416687);
+										var browserSupportFlag =  new Boolean();
+										var myOptions = {zoom: 13, mapTypeId: google.maps.MapTypeId.ROADMAP};
+										map = new google.maps.Map(document.getElementById("map"), myOptions);
+										var geocoder = new google.maps.Geocoder();
+										geocodeAddress(geocoder, map);
+										if(navigator.geolocation) {
+											browserSupportFlag = true;
+											navigator.geolocation.getCurrentPosition(function(position) {
+											initialLocation = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
+											map.setCenter(initialLocation);
+											}, function() {
+											handleNoGeolocation(browserSupportFlag);
+											});
+											}
+										else {
+											browserSupportFlag = false;
+											handleNoGeolocation(browserSupportFlag);
+											}
+										function handleNoGeolocation(errorFlag) {
+											if (errorFlag == true) {
+											alert("Geolocation Service Failed!");
+											initialLocation = newyork;
+											} else {
+											alert("Your browser doesn't support geolocation. We've placed you in Siberia.");
+											initialLocation = siberia;
+											}
+											map.setCenter(initialLocation);
+											}
+								}
+								function geocodeAddress(geocoder, resultsMap) {
+													joblistdata();
+													
+													setTimeout(function(){
+														var address = adata;
+														geocoder.geocode({'address': address}, function(results, status) {
+													if (status === google.maps.GeocoderStatus.OK) {
+														var marker = new google.maps.Marker({
+														map: resultsMap,
+														position: results[0].geometry.location
+														
+														});
+													} 
+													else {
+														alert('Geocode was not successful for the following reason: ' + status);
+													}
+													
+														var jobposting = document.getElementById("jobposting");
+														jobposting.style.visibility = "hidden";
+														google.maps.event.addListener(marker, 'click', function () {
+															console.log("MARKER CLICKED");
+															// addjob.setContent(tmpName+" is "+tmpDist+"km away from you.");
+																if (jobposting.style.visibility == "hidden") {
+																	jobposting.style.visibility = "visible";
+																}
+																else {
+																	jobposting.style.visibility = "hidden";
+																}
+															});
+													});
+
+													},3500);
+													
+												
+												}
+								function joblistdata() {
+									var reflocal = new Firebase("https://ringerforce.firebaseio.com/");
+									var refuser = reflocal.child(getCookie()).child("jobposting").child("postal");
+									
+									refuser.on("value", function(snapshot) {
+ 											var data = snapshot.val();
+ 											adata = data;
+ 											return data;
+										});
+										/*refuser.on("value", function(snapshot) {
+											var data = snapshot.key();
+											alert(data);
+											return data;
+								});*/
+							}
+								function submit(){
+									var titlee = document.getElementById('title').value;
+									var descriptionn = document.getElementById('description').value;
+									var addresss = document.getElementById('address').value;
+									var cityy = document.getElementById('city').value;
+									var postall = document.getElementById('postal').value;
+									var countryy = document.getElementById('country').value;
+									var payy = document.getElementById('pay').value;
+									var reqss = document.getElementById('reqs').value;
+									var startt = document.getElementById('start').value;
+									var endd = document.getElementById('end').value;
+										var ref = new Firebase("https://ringerforce.firebaseio.com/");
+										//var post = Math.floor((Math.random() * 1000) + 1);
+										//alert(post);
+										//alert(getCookie());
+										ref.child(getCookie()).child("jobposting")./*child(post)*/set({
+																/*posting:*/ 
+																title: titlee,
+																description: descriptionn,
+																address: addresss,
+																city: cityy,
+																postal: postall,
+																country: countryy,
+																pay: payy,
+																reqs: reqss,
+																start: startt,
+																end: endd 
+																
+																});
+								}
+
+								function getCookie() {
+										var allcookies = document.cookie;
+							cookiearray = allcookies.split(';');
+							for(var i=0; i<cookiearray.length; i++){
+						name = cookiearray[i].split('=')[0];
+						value = cookiearray[i].split('=')[1];
+						return value;
+							}
+								}
+						//google.maps.event.addDomListener(window, 'load', initmap);
+					
+			</script>
+			<script async defer
+				src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCi89UE4O4PxfFq7Ni8p5IQ_iZt3HXsm5I&callback=initmap">
+			</script>
+			<script type="text/javascript" src="profile2.js"></script>
+			<script type="text/javascript" src="profile.js"></script>
+		</body>
+	</html>

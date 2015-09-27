@@ -1,3 +1,67 @@
-<html>
-	
+<!DOCTYPE html>
+<html >
+	<head>
+		<meta charset="UTF-8">
+		<title>RingerForce</title>
+		<link rel="stylesheet" href="css/reset.css">
+		<link rel="stylesheet" href="css/style.css">
+		<script src="https://cdn.firebase.com/js/client/2.3.0/firebase.js"></script>
+		<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+	</head>
+
+	<body>
+	<img id="bground2" src="forcepattern.png" alt="">
+	<img id="bground" class="bground" src="css/back.png" alt="">
+		<div class="wrap">
+			<div class="avatar">
+				<img id="brand" class="brand" src="logo.png">
+			</div>
+			<input type="text" id="email" placeholder="Email" required>
+			<div class="bar">
+				<i></i>
+			</div>
+			<input type="password" id="password" placeholder="Password" required>
+			<a href="" class="forgot_link">Forgot?</a>
+			<button id="signin" onclick="signin()">Login</button>
+			<a href="register.html"><button>Register</button></a>
+		</div>
+		<script type="text/javascript">
+			function signin(){
+								var ref = new Firebase("https://ringerforce.firebaseio.com/");
+								var email1 = document.getElementById('email').value;
+								var password1 = document.getElementById('password').value;
+								ref.authWithPassword({
+								email    : email1,
+								password : password1
+								}, function(error, authData) {
+								if (error) {
+								alert("Login Failed!", error);
+								} else {
+								//alert("Authenticated successfully with payload:", authData);
+								setcookie("username", authData.uid, 365);
+								//alert(getCookie());
+								window.location = "http://ringerforce.ronakp.net/profile.html"
+								}
+								});
+							}
+			function setcookie(cname, cvalue, exdays){
+								var d = new Date();
+				    			var ch1 = d.setTime(d.getTime() + (exdays*24*60*60*1000));
+				    			var expires = "expires="+d.toUTCString();
+				    			var check = cname+"="+cvalue+"; "+expires;
+				    			document.cookie = check;
+							}
+
+			function getCookie() {
+									var allcookies = document.cookie;
+					               	cookiearray = allcookies.split(';');
+					               	for(var i=0; i<cookiearray.length; i++){
+					                  name = cookiearray[i].split('=')[0];
+					                  value = cookiearray[i].split('=')[1];
+					                  return value;
+					               	}
+							}
+		</script>
+			<script src="index.js"></script>
+	</body>
 </html>
