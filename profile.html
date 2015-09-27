@@ -119,6 +119,8 @@ onBlur="if (this.value==''){this.value='Search';}" />&nbsp;&nbsp;&nbsp;&nbsp;<im
 			function initmap() {
 									  var myOptions = {zoom: 15, mapTypeId: google.maps.MapTypeId.ROADMAP};
 									  map = new google.maps.Map(document.getElementById("map"), myOptions);
+									  var geocoder = new google.maps.Geocoder();
+									  geocodeAddress(geocoder, map);
 
 									   if(navigator.geolocation) {
 										    browserSupportFlag = true;
@@ -145,6 +147,31 @@ onBlur="if (this.value==''){this.value='Search';}" />&nbsp;&nbsp;&nbsp;&nbsp;<im
 										    map.setCenter(initialLocation);
 						  				}
 							}
+
+							function geocodeAddress(geocoder, resultsMap) {
+								var reflocal = new Firebase("https://ringerforce.firebaseio.com/");
+								var refuser = reflocal.child(getCookie()).child("jobposting").child("174").child("posting").child("postal");
+								var data
+									refuser.on("value", function(snapshot) {
+										  data = snapshot.val();
+										  alert(data);
+												  var address = data;
+
+												  geocoder.geocode({'address': address}, function(results, status) {
+												    if (status === google.maps.GeocoderStatus.OK) {
+												      resultsMap.setCenter(results[0].geometry.location);
+												      var marker = new google.maps.Marker({
+												        map: resultsMap,
+												        position: results[0].geometry.location
+												      });
+												    } else {
+												      alert('Geocode was not successful for the following reason: ' + status);
+												    }
+												  });
+										});
+												  
+											}
+
 
 							function submit(){
 								var titlee = document.getElementById('title').value;
