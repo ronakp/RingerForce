@@ -58,7 +58,7 @@ html, body, #map {
 }
 
 .bg-01 { background: #1C3649; }
-.bg-02 { background: #304657; }
+.bg-02 { background: #304657; padding: 16px 11px 16px 64px !important; height: 31px;}
 .bg-03 { background: #455D6F; }
 .bg-04 { background: #617685; }
 .bg-05 { background: #8796A1; }
@@ -102,8 +102,15 @@ left: 900px;
 @keyframes pulse {to {box-shadow: 0 0 0 45px rgba(232, 76, 61, 0);}}
 
 .addjob {
-  left: 200px; top: 100px; width: 500px; height: 500px; position: absolute; z-index: 99; background-color: red;
-  overflow: scroll;
+ left: 200px;
+  top: 100px;
+  width: 35em;
+  height: auto;
+  position: absolute;
+  z-index: 99;
+  background: rgba(69, 93, 111, 0.9);
+  padding: 1.5em;
+  border-radius: 8px;
 }
 
 input, textarea {
