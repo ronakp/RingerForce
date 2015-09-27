@@ -114,16 +114,7 @@ onBlur="if (this.value==''){this.value='Search';}" />&nbsp;&nbsp;&nbsp;&nbsp;<im
 			var siberia = new google.maps.LatLng(60, 105);
 			var newyork = new google.maps.LatLng(40.69847032728747, -73.9514422416687);
 			var browserSupportFlag =  new Boolean();
-			var titlee = document.getElementById('title').value;
-			var descriptionn = document.getElementById('description').value;
-			var addresss = document.getElementById('address').value;
-			var cityy = document.getElementById('city').value;
-			var postall = document.getElementById('postal').value;
-			var countryy = document.getElementById('country').value;
-			var payy = document.getElementById('pay').value;
-			var reqss = document.getElementById('reqs').value;
-			var startt = document.getElementById('start').value;
-			var endd = document.getElementById('end').value;
+			
 
 			function initmap() {
 									  var myOptions = {zoom: 15, mapTypeId: google.maps.MapTypeId.ROADMAP};
@@ -156,11 +147,35 @@ onBlur="if (this.value==''){this.value='Search';}" />&nbsp;&nbsp;&nbsp;&nbsp;<im
 							}
 
 							function submit(){
+								var titlee = document.getElementById('title').value;
+								var descriptionn = document.getElementById('description').value;
+								var addresss = document.getElementById('address').value;
+								var cityy = document.getElementById('city').value;
+								var postall = document.getElementById('postal').value;
+								var countryy = document.getElementById('country').value;
+								var payy = document.getElementById('pay').value;
+								var reqss = document.getElementById('reqs').value;
+								var startt = document.getElementById('start').value;
+								var endd = document.getElementById('end').value;
+
 									var ref = new Firebase("https://ringerforce.firebaseio.com/");
 									var post = Math.floor((Math.random() * 1000) + 1);
 									alert(post);
 									alert(getCookie());
-									ref.child(getCookie()).child("jobposting");
+									ref.child(getCookie()).child("jobposting").child(post).set({
+															  posting: {
+															    title: titlee,
+															    description: descriptionn,
+															    address: addresss,
+															    city: cityy,
+															    postal: postall,
+															    country: countryy,
+															    pay: payy,
+															    reqs: reqss,
+															    start: startt,
+															    end: endd }
+															    
+															});
 							}
 							function getCookie() {
 									var allcookies = document.cookie;
