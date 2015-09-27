@@ -198,21 +198,16 @@
 											}
 								}
 								function geocodeAddress(geocoder, resultsMap) {
-									var reflocal = new Firebase("https://ringerforce.firebaseio.com/");
-									var refuser = reflocal.child(getCookie()).child("jobposting").child("174").child("posting").child("postal");
-									var data
-										refuser.on("value", function(snapshot) {
-											data = snapshot.val();
-											alert(data);
-													var address = data;
+													var address = joblistdata();
 													geocoder.geocode({'address': address}, function(results, status) {
 													if (status === google.maps.GeocoderStatus.OK) {
-													var marker = new google.maps.Marker({
-													map: resultsMap,
-													position: results[0].geometry.location
-													});
-													} else {
-													alert('Geocode was not successful for the following reason: ' + status);
+														var marker = new google.maps.Marker({
+														map: resultsMap,
+														position: results[0].geometry.location
+														});
+													} 
+													else {
+														alert('Geocode was not successful for the following reason: ' + status);
 													}
 													
 														var jobposting = document.getElementById("jobposting");
@@ -228,9 +223,18 @@
 																}
 															});
 													});
-											});
-													
+												
 												}
+								function joblistdata() {
+									var reflocal = new Firebase("https://ringerforce.firebaseio.com/");
+									var refuser = reflocal.child(getCookie()).child("jobposting");
+									var data
+										refuser.on("value", function(snapshot) {
+											data = snapshot.val();
+											alert(data);
+											return data;
+								}
+							}
 								function submit(){
 									var titlee = document.getElementById('title').value;
 									var descriptionn = document.getElementById('description').value;
@@ -261,6 +265,7 @@
 																
 																});
 								}
+
 								function getCookie() {
 										var allcookies = document.cookie;
 							cookiearray = allcookies.split(';');
