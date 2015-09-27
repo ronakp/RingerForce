@@ -13,15 +13,24 @@ var filterIcon = document.getElementById("filterIcon");
 // 	filterIcon.src = "filter.png";
 // }
 var filterPanel = document.getElementById("filterPanel");
+var ticker = true;
 
 filterPanel.onclick = function () { 
-	document.getElementById("filterPop").style.height = 150 + "px";
-	// console.log(filterIcon.src);
-	filterIcon.src = "closex.png";
+	console.log("running");
+		if (ticker) {
+		document.getElementById("filterPop").style.height = 150 + "px";
+		filterIcon.src = "closex.png";
+		ticker = false;
+	}
+	if (!ticker) {
+	 	document.getElementById("filterPop").style.height = 31 + "px";
+		filterIcon.src = "filter.png";
+	}
 };
 
-filterIcon.onclick = function () {
-	document.getElementById("filterPop").style.height = 31 + "px";
-	console.log("ran close");
-	filterIcon.src = "filter.png"
-}
+// filterPanel.onclick = function() {
+// 	if (filterIcon.src == "file:///C:/Users/saga/Documents/TONS/developTONS/RingerForce/closex.png") {
+// 		document.getElementById("filterPop").style.height = 31 + "px";
+// 		filterIcon.src = "filter.png";
+// 	} 
+// }
