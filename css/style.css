@@ -16,6 +16,10 @@ body {
 	margin: auto;
 	margin-top: 11%;
 }
+
+img.brand {
+	width: 200px;
+}
 .avatar {
 	width: 100%;
 	margin: auto;
@@ -90,9 +94,56 @@ body {
 	cursor: pointer;
 }
 
+
+
+
+
+
+@media (min-width:320px){
+	img.brand {
+		width: 146px;
+	}
+	.avatar {
+		bottom: 0px;
+	}
+	div.wrap {
+		margin-top: 3%;
+	}
+}
+
+@media (min-width:406px){
+	img.brand {
+		width: 168px;
+	}
+}
+
+/*@media (min-width:618px){
+	.avatar {
+		bottom: 29px;
+	}
+}*/
+
+@media (min-width:1116px){
+	.avatar {
+		bottom: 46px;
+	}
+}
+
+@media (min-width:1117px){
+	div.wrap {
+		width: 294px;
+		margin-top: 11%;
+	}
+	div.avatar {
+		bottom: 94px;
+	}
+	img.brand {
+		width: 262px;
+	}
+}
+
 /*at 1117 wide .avatar bottom = 46px
-/* at 618 wide .avatar bottom = 29px
-/*at 406 wide image.brand width = 168px
-/* 320 wide image.brand width = 146px
-/*  .avatar bottom = 0px
-div.wrap margin-top 3%
+ at 618 wide .avatar bottom = 29px*at 406 wide image.brand width = 168px
+ 320 wide image.brand width = 146px
+  .avatar bottom = 0px
+div.wrap margin-top 3%*/
