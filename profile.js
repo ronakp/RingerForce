@@ -1,6 +1,6 @@
 var filter = document.getElementById("filterPop");
 
-var filterIcon = document.getElementById("filterIcon").src;
+var filterIcon = document.getElementById("filterIcon");
 // console.log(filterIcon);
 
 // function pop() {
@@ -16,6 +16,12 @@ var filterPanel = document.getElementById("filterPanel");
 
 filterPanel.onclick = function () { 
 	document.getElementById("filterPop").style.height = 150 + "px";
-	filterIcon.src = "close.png";
+	// console.log(filterIcon.src);
+	filterIcon.src = "closex.png";
 };
 
+filterIcon.onclick = function () {
+	document.getElementById("filterPop").style.height = 31 + "px";
+	console.log("ran close");
+	filterIcon.src = "filter.png"
+}
