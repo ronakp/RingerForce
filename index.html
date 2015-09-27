@@ -37,9 +37,10 @@
 								if (error) {
 								alert("Login Failed!", error);
 								} else {
-								alert("Authenticated successfully with payload:", authData);
+								//alert("Authenticated successfully with payload:", authData);
 								setcookie("username", authData.uid, 365);
-								alert(getCookie());
+								//alert(getCookie());
+								window.location = "http://ringerforce.ronakp.net/profile.html"
 								}
 								});
 							}
