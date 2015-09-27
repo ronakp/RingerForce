@@ -1,36 +1,44 @@
-var filter = document.getElementById("filterPop");
+//FILTER FUNCTIONALITY
+	var filterIcon = document.getElementById("filterIcon");
+	var filterPanel = document.getElementById("filterPanel");
+	var filterPop = document.getElementById("filterPop");
+	var ticker = true;
 
-var filterIcon = document.getElementById("filterIcon");
-// console.log(filterIcon);
+	filterPanel.onclick = function () { 
+		if(ticker == true) {
+			filterPop.style.height = 150 + "px";
+			filterIcon.src = "closex.png";
+			tickera();
+		}else if(ticker == false) {
+			filterPop.style.height = 31 + "px";
+			filterIcon.src = "filter.png";
+			tickerb();
+		}
+	
+	}
 
-// function pop() {
-// 	filter = 400 + "px";
-// 	filterIcon.src = "closex.png";
-// }
-
-// function close() {
-// 	filter = 80 + "px";
-// 	filterIcon.src = "filter.png";
-// }
-var filterPanel = document.getElementById("filterPanel");
-var ticker = true;
-
-filterPanel.onclick = function () { 
-	console.log("running");
-	if (ticker) {
-		document.getElementById("filterPop").style.height = 150 + "px";
-		filterIcon.src = "closex.png";
+	function tickera() {
 		ticker = false;
 	}
-	if (!ticker) {
-	 	document.getElementById("filterPop").style.height = 31 + "px";
-		filterIcon.src = "filter.png";
-	}
-};
 
-// filterPanel.onclick = function() {
-// 	if (filterIcon.src == "file:///C:/Users/saga/Documents/TONS/developTONS/RingerForce/closex.png") {
-// 		document.getElementById("filterPop").style.height = 31 + "px";
-// 		filterIcon.src = "filter.png";
-// 	} 
-// }
+	function tickerb() {
+		ticker = true;
+	}
+
+//ACCOUNT FUNCTIONALITY
+	var accountIcon = document.getElementById("gearIcon");
+	var accountPanel = document.getElementById("accountPanel");
+	var accountPop = document.getElementById("accountPop");
+
+accountPanel.onclick = function () { 
+		if(ticker == true) {
+			accountPop.style.height = 150 + "px";
+			accountIcon.src = "closex.png";
+			tickera();
+		}else if(ticker == false) {
+			accountPop.style.height = 31 + "px";
+			accountIcon.src = "gearicon.png";
+			tickerb();
+		}
+	
+	}

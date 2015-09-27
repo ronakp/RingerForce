@@ -58,8 +58,8 @@ html, body, #map {
 }
 
 .bg-01 { background: #1C3649; }
-.bg-02 { background: #304657; padding: 16px 11px 16px 64px !important; height: 31px;}
-.bg-03 { background: #455D6F; }
+.bg-02 { background: #304657; padding: 16px 11px 16px 64px !important;}
+.bg-03 { background: #455D6F; padding: 16px 11px 16px 64px !important;}
 .bg-04 { background: #617685; }
 .bg-05 { background: #8796A1; }
 .bg-06 { background: #E2AE63; } /*not in blue scheme*/
