@@ -17,7 +17,7 @@ var ticker = true;
 
 filterPanel.onclick = function () { 
 	console.log("running");
-		if (ticker) {
+	if (ticker) {
 		document.getElementById("filterPop").style.height = 150 + "px";
 		filterIcon.src = "closex.png";
 		ticker = false;
